@@ -288,6 +288,23 @@ describe('bitcoin profif maximisation for humans', () => {
 		assert.equal(maximizationHuman([1,2,3,1,2,3,1,2,3,4,5,1,2,3,4]), 4);
 	});
 
+	it('returns 15 for [1,3,5,16,6,6,6,7,7,8,8,8,8,8,8]', () => {
+		assert.equal(maximizationHuman([1,3,5,16,6,6,6,7,7,8,8,8,8,8,8]), 15);
+	});
+
+	it('returns 13 for [5,3,5,16,6,6,6,7,7,8,8,8,8,8,8]', () => {
+		assert.equal(maximizationHuman([5,3,5,16,6,6,6,7,7,8,8,8,8,8,8]), 13);
+	});
+
+	it('returns 13 for [50,3,5,16,6,6,6,7,7,8,8,8,8,8,8]', () => {
+		assert.equal(maximizationHuman([50,3,5,16,6,6,6,7,7,8,8,8,8,8,8]), 13);
+	});
+
+	it('returns 77 for [50,3,5,16,6,6,6,7,7,8,8,8,8,80,8]', () => {
+		assert.equal(maximizationHuman([50,3,5,16,6,6,6,7,7,8,8,8,8,80,8]), 77);
+	});
+
+
   // ...
 });
 
@@ -320,6 +337,23 @@ describe('bitcoin profif maximisation one line', () => {
 	it('returns 4 for [1,2,3,1,2,3,1,2,3,4,5,1,2,3,4]', () => {
 		assert.equal(maximizationOneLine([1,2,3,1,2,3,1,2,3,4,5,1,2,3,4]), 4);
 	});
+
+	it('returns 15 for [1,3,5,16,6,6,6,7,7,8,8,8,8,8,8]', () => {
+		assert.equal(maximizationOneLine([1,3,5,16,6,6,6,7,7,8,8,8,8,8,8]), 15);
+	});
+
+	it('returns 13 for [5,3,5,16,6,6,6,7,7,8,8,8,8,8,8]', () => {
+		assert.equal(maximizationOneLine([5,3,5,16,6,6,6,7,7,8,8,8,8,8,8]), 13);
+	});
+
+	it('returns 13 for [50,3,5,16,6,6,6,7,7,8,8,8,8,8,8]', () => {
+		assert.equal(maximizationOneLine([50,3,5,16,6,6,6,7,7,8,8,8,8,8,8]), 13);
+	});
+
+	it('returns 77 for [50,3,5,16,6,6,6,7,7,8,8,8,8,80,8]', () => {
+		assert.equal(maximizationOneLine([50,3,5,16,6,6,6,7,7,8,8,8,8,80,8]), 77);
+	});
+
 
   // ...
 });
