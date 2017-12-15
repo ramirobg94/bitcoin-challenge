@@ -25,5 +25,8 @@
     "babel-register": "^6.26.0",
     "chai": "^4.1.2",
     "mocha": "^4.0.1"
+  },
+  "dependencies": {
+    "benchmark": "^2.1.4"
   }
 }

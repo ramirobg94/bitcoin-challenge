@@ -1,10 +1,24 @@
 import { maximizationHuman, maximizationOneLine,
+	
+	maximizationWithReducersShortestVersion,
+	maximizationWithReducersShorterVersion,
+	maximizationWithReducersShortVersion,
+	maximizationWithReducers,
+	maximizationWithReducersLongVersion,
+	crazy,
+
 	maxValueRight,
 	sliceToRight,
 	getMaxDiference,
 	getMaxDiferenceToRight,
-	getMax
+	getMax,
 	//maxValueRightWithIndexOf,
+
+	getDiferencesToTheRight,
+	maxValueInArray,
+	retunValueIfPositive,
+	isEmpty
+
 } from './bitcoin';
 import { assert } from 'chai';
 
@@ -357,6 +371,311 @@ describe('bitcoin profif maximisation one line', () => {
 
   // ...
 });
+
+
+describe('bitcoin profif maximizationWithReducersShortestVersion', () => {
+	it('returns -1 if there is no profit', () => {
+		assert.equal(maximizationWithReducersShortestVersion([]), -1);
+	});
+
+	it('returns -1 if there are any no number', () => {
+		assert.equal(maximizationWithReducersShortestVersion([45, 24, 35, 'a', 40, 38, 11]), -1);
+	});
+
+	it('returns 16 for [45, 24, 35, 31, 40, 38, 24]', () => {
+		assert.equal(maximizationWithReducersShortestVersion([45, 24, 35, 31, 40, 38, 24]), 16);
+	});
+
+	it('returns -1 for [5, 4, 3, 2, 1] because there are not profit 5 - 5 = 0', () => {
+		assert.equal(maximizationWithReducersShortestVersion([5,4,3,2,1]), -1);
+	});
+
+	it('returns 4 for [1, 2, 3, 4, 5]', () => {
+		assert.equal(maximizationWithReducersShortestVersion([1,2,3,4,5]), 4);
+	});
+
+
+	it('returns 4 for [5,4,3,2,1,2,3,4,5]', () => {
+		assert.equal(maximizationWithReducersShortestVersion([5,4,3,2,1,2,3,4,5]), 4);
+	});
+
+	it('returns 4 for [1,2,3,1,2,3,1,2,3,4,5,1,2,3,4]', () => {
+		assert.equal(maximizationWithReducersShortestVersion([1,2,3,1,2,3,1,2,3,4,5,1,2,3,4]), 4);
+	});
+
+	it('returns 15 for [1,3,5,16,6,6,6,7,7,8,8,8,8,8,8]', () => {
+		assert.equal(maximizationWithReducersShortestVersion([1,3,5,16,6,6,6,7,7,8,8,8,8,8,8]), 15);
+	});
+
+	it('returns 13 for [5,3,5,16,6,6,6,7,7,8,8,8,8,8,8]', () => {
+		assert.equal(maximizationWithReducersShortestVersion([5,3,5,16,6,6,6,7,7,8,8,8,8,8,8]), 13);
+	});
+
+	it('returns 13 for [50,3,5,16,6,6,6,7,7,8,8,8,8,8,8]', () => {
+		assert.equal(maximizationWithReducersShortestVersion([50,3,5,16,6,6,6,7,7,8,8,8,8,8,8]), 13);
+	});
+
+	it('returns 77 for [50,3,5,16,6,6,6,7,7,8,8,8,8,80,8]', () => {
+		assert.equal(maximizationWithReducersShortestVersion([50,3,5,16,6,6,6,7,7,8,8,8,8,80,8]), 77);
+	});
+
+
+  // ...
+});
+
+describe('bitcoin profif maximizationWithReducersShorterVersion', () => {
+	it('returns -1 if there is no profit', () => {
+		assert.equal(maximizationWithReducersShorterVersion([]), -1);
+	});
+
+	it('returns -1 if there are any no number', () => {
+		assert.equal(maximizationWithReducersShorterVersion([45, 24, 35, 'a', 40, 38, 11]), -1);
+	});
+
+	it('returns 16 for [45, 24, 35, 31, 40, 38, 24]', () => {
+		assert.equal(maximizationWithReducersShorterVersion([45, 24, 35, 31, 40, 38, 24]), 16);
+	});
+
+	it('returns -1 for [5, 4, 3, 2, 1] because there are not profit 5 - 5 = 0', () => {
+		assert.equal(maximizationWithReducersShorterVersion([5,4,3,2,1]), -1);
+	});
+
+	it('returns 4 for [1, 2, 3, 4, 5]', () => {
+		assert.equal(maximizationWithReducersShorterVersion([1,2,3,4,5]), 4);
+	});
+
+
+	it('returns 4 for [5,4,3,2,1,2,3,4,5]', () => {
+		assert.equal(maximizationWithReducersShorterVersion([5,4,3,2,1,2,3,4,5]), 4);
+	});
+
+	it('returns 4 for [1,2,3,1,2,3,1,2,3,4,5,1,2,3,4]', () => {
+		assert.equal(maximizationWithReducersShorterVersion([1,2,3,1,2,3,1,2,3,4,5,1,2,3,4]), 4);
+	});
+
+	it('returns 15 for [1,3,5,16,6,6,6,7,7,8,8,8,8,8,8]', () => {
+		assert.equal(maximizationWithReducersShorterVersion([1,3,5,16,6,6,6,7,7,8,8,8,8,8,8]), 15);
+	});
+
+	it('returns 13 for [5,3,5,16,6,6,6,7,7,8,8,8,8,8,8]', () => {
+		assert.equal(maximizationWithReducersShorterVersion([5,3,5,16,6,6,6,7,7,8,8,8,8,8,8]), 13);
+	});
+
+	it('returns 13 for [50,3,5,16,6,6,6,7,7,8,8,8,8,8,8]', () => {
+		assert.equal(maximizationWithReducersShorterVersion([50,3,5,16,6,6,6,7,7,8,8,8,8,8,8]), 13);
+	});
+
+	it('returns 77 for [50,3,5,16,6,6,6,7,7,8,8,8,8,80,8]', () => {
+		assert.equal(maximizationWithReducersShorterVersion([50,3,5,16,6,6,6,7,7,8,8,8,8,80,8]), 77);
+	});
+
+
+  // ...
+});
+
+
+describe('bitcoin profif maximizationWithReducersShortVersion', () => {
+	it('returns -1 if there is no profit', () => {
+		assert.equal(maximizationWithReducersShortVersion([]), -1);
+	});
+
+	it('returns -1 if there are any no number', () => {
+		assert.equal(maximizationWithReducersShortVersion([45, 24, 35, 'a', 40, 38, 11]), -1);
+	});
+
+	it('returns 16 for [45, 24, 35, 31, 40, 38, 24]', () => {
+		assert.equal(maximizationWithReducersShortVersion([45, 24, 35, 31, 40, 38, 24]), 16);
+	});
+
+	it('returns -1 for [5, 4, 3, 2, 1] because there are not profit 5 - 5 = 0', () => {
+		assert.equal(maximizationWithReducersShortVersion([5,4,3,2,1]), -1);
+	});
+
+	it('returns 4 for [1, 2, 3, 4, 5]', () => {
+		assert.equal(maximizationWithReducersShortVersion([1,2,3,4,5]), 4);
+	});
+
+
+	it('returns 4 for [5,4,3,2,1,2,3,4,5]', () => {
+		assert.equal(maximizationWithReducersShortVersion([5,4,3,2,1,2,3,4,5]), 4);
+	});
+
+	it('returns 4 for [1,2,3,1,2,3,1,2,3,4,5,1,2,3,4]', () => {
+		assert.equal(maximizationWithReducersShortVersion([1,2,3,1,2,3,1,2,3,4,5,1,2,3,4]), 4);
+	});
+
+	it('returns 15 for [1,3,5,16,6,6,6,7,7,8,8,8,8,8,8]', () => {
+		assert.equal(maximizationWithReducersShortVersion([1,3,5,16,6,6,6,7,7,8,8,8,8,8,8]), 15);
+	});
+
+	it('returns 13 for [5,3,5,16,6,6,6,7,7,8,8,8,8,8,8]', () => {
+		assert.equal(maximizationWithReducersShortVersion([5,3,5,16,6,6,6,7,7,8,8,8,8,8,8]), 13);
+	});
+
+	it('returns 13 for [50,3,5,16,6,6,6,7,7,8,8,8,8,8,8]', () => {
+		assert.equal(maximizationWithReducersShortVersion([50,3,5,16,6,6,6,7,7,8,8,8,8,8,8]), 13);
+	});
+
+	it('returns 77 for [50,3,5,16,6,6,6,7,7,8,8,8,8,80,8]', () => {
+		assert.equal(maximizationWithReducersShortVersion([50,3,5,16,6,6,6,7,7,8,8,8,8,80,8]), 77);
+	});
+
+
+  // ...
+});
+
+
+
+describe('bitcoin profif maximizationWithReducers', () => {
+	it('returns -1 if there is no profit', () => {
+		assert.equal(maximizationWithReducers([]), -1);
+	});
+
+	it('returns -1 if there are any no number', () => {
+		assert.equal(maximizationWithReducers([45, 24, 35, 'a', 40, 38, 11]), -1);
+	});
+
+	it('returns 16 for [45, 24, 35, 31, 40, 38, 24]', () => {
+		assert.equal(maximizationWithReducers([45, 24, 35, 31, 40, 38, 24]), 16);
+	});
+
+	it('returns -1 for [5, 4, 3, 2, 1] because there are not profit 5 - 5 = 0', () => {
+		assert.equal(maximizationWithReducers([5,4,3,2,1]), -1);
+	});
+
+	it('returns 4 for [1, 2, 3, 4, 5]', () => {
+		assert.equal(maximizationWithReducers([1,2,3,4,5]), 4);
+	});
+
+
+	it('returns 4 for [5,4,3,2,1,2,3,4,5]', () => {
+		assert.equal(maximizationWithReducers([5,4,3,2,1,2,3,4,5]), 4);
+	});
+
+	it('returns 4 for [1,2,3,1,2,3,1,2,3,4,5,1,2,3,4]', () => {
+		assert.equal(maximizationWithReducers([1,2,3,1,2,3,1,2,3,4,5,1,2,3,4]), 4);
+	});
+
+	it('returns 15 for [1,3,5,16,6,6,6,7,7,8,8,8,8,8,8]', () => {
+		assert.equal(maximizationWithReducers([1,3,5,16,6,6,6,7,7,8,8,8,8,8,8]), 15);
+	});
+
+	it('returns 13 for [5,3,5,16,6,6,6,7,7,8,8,8,8,8,8]', () => {
+		assert.equal(maximizationWithReducers([5,3,5,16,6,6,6,7,7,8,8,8,8,8,8]), 13);
+	});
+
+	it('returns 13 for [50,3,5,16,6,6,6,7,7,8,8,8,8,8,8]', () => {
+		assert.equal(maximizationWithReducers([50,3,5,16,6,6,6,7,7,8,8,8,8,8,8]), 13);
+	});
+
+	it('returns 77 for [50,3,5,16,6,6,6,7,7,8,8,8,8,80,8]', () => {
+		assert.equal(maximizationWithReducers([50,3,5,16,6,6,6,7,7,8,8,8,8,80,8]), 77);
+	});
+
+
+  // ...
+});
+
+
+describe('bitcoin profif maximizationWithReducersLongVersion', () => {
+	it('returns -1 if there is no profit', () => {
+		assert.equal(maximizationWithReducersLongVersion([]), -1);
+	});
+
+	it('returns -1 if there are any no number', () => {
+		assert.equal(maximizationWithReducersLongVersion([45, 24, 35, 'a', 40, 38, 11]), -1);
+	});
+
+	it('returns 16 for [45, 24, 35, 31, 40, 38, 24]', () => {
+		assert.equal(maximizationWithReducersLongVersion([45, 24, 35, 31, 40, 38, 24]), 16);
+	});
+
+	it('returns -1 for [5, 4, 3, 2, 1] because there are not profit 5 - 5 = 0', () => {
+		assert.equal(maximizationWithReducersLongVersion([5,4,3,2,1]), -1);
+	});
+
+	it('returns 4 for [1, 2, 3, 4, 5]', () => {
+		assert.equal(maximizationWithReducersLongVersion([1,2,3,4,5]), 4);
+	});
+
+	it('returns 4 for [5,4,3,2,1,2,3,4,5]', () => {
+		assert.equal(maximizationWithReducersLongVersion([5,4,3,2,1,2,3,4,5]), 4);
+	});
+
+	it('returns 4 for [1,2,3,1,2,3,1,2,3,4,5,1,2,3,4]', () => {
+		assert.equal(maximizationWithReducersLongVersion([1,2,3,1,2,3,1,2,3,4,5,1,2,3,4]), 4);
+	});
+
+	it('returns 15 for [1,3,5,16,6,6,6,7,7,8,8,8,8,8,8]', () => {
+		assert.equal(maximizationWithReducersLongVersion([1,3,5,16,6,6,6,7,7,8,8,8,8,8,8]), 15);
+	});
+
+	it('returns 13 for [5,3,5,16,6,6,6,7,7,8,8,8,8,8,8]', () => {
+		assert.equal(maximizationWithReducersLongVersion([5,3,5,16,6,6,6,7,7,8,8,8,8,8,8]), 13);
+	});
+
+	it('returns 13 for [50,3,5,16,6,6,6,7,7,8,8,8,8,8,8]', () => {
+		assert.equal(maximizationWithReducersLongVersion([50,3,5,16,6,6,6,7,7,8,8,8,8,8,8]), 13);
+	});
+
+	it('returns 77 for [50,3,5,16,6,6,6,7,7,8,8,8,8,80,8]', () => {
+		assert.equal(maximizationWithReducersLongVersion([50,3,5,16,6,6,6,7,7,8,8,8,8,80,8]), 77);
+	});
+
+
+  // ...
+});
+
+describe('bitcoin profif crazy', () => {
+	it('returns -1 if there is no profit', () => {
+		assert.equal(crazy([]), -1);
+	});
+
+	it('returns -1 if there are any no number', () => {
+		assert.equal(crazy([45, 24, 35, 'a', 40, 38, 11]), -1);
+	});
+
+	it('returns 16 for [45, 24, 35, 31, 40, 38, 24]', () => {
+		assert.equal(crazy([45, 24, 35, 31, 40, 38, 24]), 16);
+	});
+
+	it('returns -1 for [5, 4, 3, 2, 1] because there are not profit 5 - 5 = 0', () => {
+		assert.equal(crazy([5,4,3,2,1]), -1);
+	});
+
+	it('returns 4 for [1, 2, 3, 4, 5]', () => {
+		assert.equal(crazy([1,2,3,4,5]), 4);
+	});
+
+	it('returns 4 for [5,4,3,2,1,2,3,4,5]', () => {
+		assert.equal(crazy([5,4,3,2,1,2,3,4,5]), 4);
+	});
+
+	it('returns 4 for [1,2,3,1,2,3,1,2,3,4,5,1,2,3,4]', () => {
+		assert.equal(crazy([1,2,3,1,2,3,1,2,3,4,5,1,2,3,4]), 4);
+	});
+
+	it('returns 15 for [1,3,5,16,6,6,6,7,7,8,8,8,8,8,8]', () => {
+		assert.equal(crazy([1,3,5,16,6,6,6,7,7,8,8,8,8,8,8]), 15);
+	});
+
+	it('returns 13 for [5,3,5,16,6,6,6,7,7,8,8,8,8,8,8]', () => {
+		assert.equal(crazy([5,3,5,16,6,6,6,7,7,8,8,8,8,8,8]), 13);
+	});
+
+	it('returns 13 for [50,3,5,16,6,6,6,7,7,8,8,8,8,8,8]', () => {
+		assert.equal(crazy([50,3,5,16,6,6,6,7,7,8,8,8,8,8,8]), 13);
+	});
+
+	it('returns 77 for [50,3,5,16,6,6,6,7,7,8,8,8,8,80,8]', () => {
+		assert.equal(crazy([50,3,5,16,6,6,6,7,7,8,8,8,8,80,8]), 77);
+	});
+
+
+  // ...
+});
+
+
 
 describe('Sign', () => {
 	it('         _           _                  _   _          _          _           _      ', () => { assert.equal(0,0); });
