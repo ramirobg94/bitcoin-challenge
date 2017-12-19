@@ -6,6 +6,7 @@ import { maximizationHuman, maximizationOneLine,
 	maximizationWithReducers,
 	maximizationWithReducersLongVersion,
 	crazy,
+	dinamicMax,
 
 	maxValueRight,
 	sliceToRight,
@@ -669,6 +670,55 @@ describe('bitcoin profif crazy', () => {
 
 	it('returns 77 for [50,3,5,16,6,6,6,7,7,8,8,8,8,80,8]', () => {
 		assert.equal(crazy([50,3,5,16,6,6,6,7,7,8,8,8,8,80,8]), 77);
+	});
+
+
+  // ...
+});
+
+describe('bitcoin profif dinamicMax', () => {
+	it('returns -1 if there is no profit', () => {
+		assert.equal(dinamicMax([]), -1);
+	});
+
+	/*it('returns -1 if there are any no number', () => {
+		assert.equal(dinamicMax([45, 24, 35, 'a', 40, 38, 11]), -1);
+	});*/
+
+	it('returns 16 for [45, 24, 35, 31, 40, 38, 24]', () => {
+		assert.equal(dinamicMax([45, 24, 35, 31, 40, 38, 24]), 16);
+	});
+
+	it('returns -1 for [5, 4, 3, 2, 1] because there are not profit 5 - 5 = 0', () => {
+		assert.equal(dinamicMax([5,4,3,2,1]), -1);
+	});
+
+	it('returns 4 for [1, 2, 3, 4, 5]', () => {
+		assert.equal(dinamicMax([1,2,3,4,5]), 4);
+	});
+
+	it('returns 4 for [5,4,3,2,1,2,3,4,5]', () => {
+		assert.equal(dinamicMax([5,4,3,2,1,2,3,4,5]), 4);
+	});
+
+	it('returns 4 for [1,2,3,1,2,3,1,2,3,4,5,1,2,3,4]', () => {
+		assert.equal(dinamicMax([1,2,3,1,2,3,1,2,3,4,5,1,2,3,4]), 4);
+	});
+
+	it('returns 15 for [1,3,5,16,6,6,6,7,7,8,8,8,8,8,8]', () => {
+		assert.equal(dinamicMax([1,3,5,16,6,6,6,7,7,8,8,8,8,8,8]), 15);
+	});
+
+	it('returns 13 for [5,3,5,16,6,6,6,7,7,8,8,8,8,8,8]', () => {
+		assert.equal(dinamicMax([5,3,5,16,6,6,6,7,7,8,8,8,8,8,8]), 13);
+	});
+
+	it('returns 13 for [50,3,5,16,6,6,6,7,7,8,8,8,8,8,8]', () => {
+		assert.equal(dinamicMax([50,3,5,16,6,6,6,7,7,8,8,8,8,8,8]), 13);
+	});
+
+	it('returns 77 for [50,3,5,16,6,6,6,7,7,8,8,8,8,80,8]', () => {
+		assert.equal(dinamicMax([50,3,5,16,6,6,6,7,7,8,8,8,8,80,8]), 77);
 	});
 
 
