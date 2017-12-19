@@ -10,7 +10,7 @@ var suite = new Benchmark.Suite;
 
 
 
-//Fastest (forEach in spite of old for is faster)
+//Fastest (I used forEach in spite of the old "for" is faster)
 export const dinamicMax = (arr) => {
 	if( isEmpty(arr) ) return -1;
 
